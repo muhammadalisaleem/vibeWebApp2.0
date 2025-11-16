@@ -8,11 +8,11 @@ export default function TabsLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white flex flex-col">
       <Header />
-      <div className="flex">
+      <div className="flex flex-1">
         <Sidebar />
-        <main className="flex-1 md:ml-64 pb-20 md:pb-0">
+        <main className="flex-1 pb-20 md:pb-0">
           <div className="max-w-7xl mx-auto px-4 py-6">
             {children}
           </div>

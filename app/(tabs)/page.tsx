@@ -40,35 +40,39 @@ export default function HomePage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 pb-6">
       {/* Welcome Section */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
+        className="space-y-2"
       >
-        <h1 className="text-3xl font-bold mb-2">
+        <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-white via-white to-[#9CA3AF] bg-clip-text text-transparent">
           Welcome back, {user.name.split(' ')[0]}! 👋
         </h1>
-        <p className="text-[#9CA3AF]">Ready to make a difference today?</p>
+        <p className="text-[#9CA3AF] text-base md:text-lg">Ready to make a difference today?</p>
       </motion.div>
 
       {/* Stats Row */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.1 }}
         >
-          <Card>
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-[#9CA3AF] mb-1">VIBE Coins</p>
-                <p className="text-2xl font-bold flex items-center gap-2">
-                  <Coins className="w-6 h-6 text-[#FF6B35]" />
-                  {user.coins.toLocaleString()}
-                </p>
+          <Card variant="highlight" className="relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[#FF6B35]/20 to-transparent rounded-full blur-2xl"></div>
+            <div className="relative">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-2 rounded-lg bg-gradient-to-br from-[#FF6B35]/20 to-[#FF6B35]/10">
+                  <Coins className="w-5 h-5 text-[#FF6B35]" />
+                </div>
+                <p className="text-xs text-[#9CA3AF] uppercase tracking-wide font-medium">VIBE Coins</p>
               </div>
+              <p className="text-3xl font-bold flex items-center gap-2">
+                {user.coins.toLocaleString()}
+              </p>
             </div>
           </Card>
         </motion.div>
@@ -78,15 +82,18 @@ export default function HomePage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          <Card>
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-[#9CA3AF] mb-1">Streak</p>
-                <p className="text-2xl font-bold flex items-center gap-2">
-                  <Flame className="w-6 h-6 text-[#FF6B35]" />
-                  {user.streak} days
-                </p>
+          <Card variant="highlight" className="relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[#FF6B35]/20 to-transparent rounded-full blur-2xl"></div>
+            <div className="relative">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-2 rounded-lg bg-gradient-to-br from-[#FF6B35]/20 to-[#FF6B35]/10">
+                  <Flame className="w-5 h-5 text-[#FF6B35]" />
+                </div>
+                <p className="text-xs text-[#9CA3AF] uppercase tracking-wide font-medium">Streak</p>
               </div>
+              <p className="text-3xl font-bold flex items-center gap-2">
+                {user.streak} <span className="text-lg text-[#9CA3AF] font-normal">days</span>
+              </p>
             </div>
           </Card>
         </motion.div>
@@ -96,15 +103,18 @@ export default function HomePage() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.3 }}
         >
-          <Card>
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-[#9CA3AF] mb-1">Monthly Rank</p>
-                <p className="text-2xl font-bold flex items-center gap-2">
-                  <TrendingUp className="w-6 h-6 text-[#7C3AED]" />
-                  {monthlyRank !== null ? `#${monthlyRank}` : '...'}
-                </p>
+          <Card variant="highlight" className="relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[#7C3AED]/20 to-transparent rounded-full blur-2xl"></div>
+            <div className="relative">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-2 rounded-lg bg-gradient-to-br from-[#7C3AED]/20 to-[#7C3AED]/10">
+                  <TrendingUp className="w-5 h-5 text-[#7C3AED]" />
+                </div>
+                <p className="text-xs text-[#9CA3AF] uppercase tracking-wide font-medium">Monthly Rank</p>
               </div>
+              <p className="text-3xl font-bold flex items-center gap-2">
+                {monthlyRank !== null ? `#${monthlyRank}` : '...'}
+              </p>
             </div>
           </Card>
         </motion.div>
@@ -116,25 +126,32 @@ export default function HomePage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
       >
-        <Card>
-          <div className="mb-3">
-            <div className="flex justify-between items-center mb-2">
-              <p className="text-sm font-medium">Monthly Goal Progress</p>
-              <p className="text-sm text-[#9CA3AF]">
-                {currentProgress} / {monthlyGoal} hrs
-              </p>
+        <Card variant="gradient" className="relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-[#7C3AED]/5 via-transparent to-[#FF6B35]/5"></div>
+          <div className="relative">
+            <div className="flex justify-between items-center mb-3">
+              <div>
+                <p className="text-base font-semibold text-white mb-1">Monthly Goal Progress</p>
+                <p className="text-sm text-[#9CA3AF]">
+                  {currentProgress} / {monthlyGoal} hours
+                </p>
+              </div>
+              <div className="text-right">
+                <p className="text-2xl font-bold bg-gradient-to-r from-[#7C3AED] to-[#FF6B35] bg-clip-text text-transparent">
+                  {progressPercent.toFixed(0)}%
+                </p>
+              </div>
             </div>
-            <div className="w-full bg-[#1F1F1F] rounded-full h-3 overflow-hidden">
+            <div className="w-full bg-[#1A1A1A] rounded-full h-3 overflow-hidden relative">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${progressPercent}%` }}
-                transition={{ duration: 1, delay: 0.5 }}
-                className="h-full bg-gradient-to-r from-[#7C3AED] to-[#FF6B35] rounded-full"
-              />
+                transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
+                className="h-full bg-gradient-to-r from-[#7C3AED] via-[#8B5CF6] to-[#FF6B35] rounded-full relative shadow-lg shadow-[#7C3AED]/30"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
+              </motion.div>
             </div>
-            <p className="text-xs text-[#9CA3AF] mt-2">
-              {progressPercent.toFixed(0)}% complete
-            </p>
           </div>
         </Card>
       </motion.div>
@@ -145,33 +162,44 @@ export default function HomePage() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.5 }}
       >
-        <Card className="border-2 border-[#FF6B35]">
-          <div className="flex items-start gap-3 mb-4">
-            <AlertCircle className="w-6 h-6 text-[#FF6B35] flex-shrink-0 mt-1" />
-            <div className="flex-1">
-              <h3 className="text-lg font-bold mb-1">{emergency.title}</h3>
-              <p className="text-sm text-[#9CA3AF] mb-4">{emergency.desc}</p>
-              <div className="mb-4">
-                <div className="flex justify-between items-center mb-2">
-                  <p className="text-xs text-[#9CA3AF]">Progress</p>
-                  <p className="text-xs font-medium">{emergency.progress}%</p>
-                </div>
-                <div className="w-full bg-[#1F1F1F] rounded-full h-2 overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={{ width: `${emergency.progress}%` }}
-                    transition={{ duration: 1, delay: 0.6 }}
-                    className="h-full bg-[#FF6B35] rounded-full"
-                  />
-                </div>
+        <Card className="border-2 border-[#FF6B35]/50 bg-gradient-to-br from-[#FF6B35]/10 via-[#0F0F0F] to-[#0F0F0F] relative overflow-hidden shadow-xl shadow-[#FF6B35]/10">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#FF6B35]/20 to-transparent rounded-full blur-3xl"></div>
+          <div className="relative">
+            <div className="flex items-start gap-4 mb-5">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-[#FF6B35]/20 to-[#FF6B35]/10 border border-[#FF6B35]/30">
+                <AlertCircle className="w-6 h-6 text-[#FF6B35]" />
               </div>
-              <Button
-                variant="cta"
-                className="w-full"
-                onClick={() => console.log('Help Now clicked')}
-              >
-                Help Now +{emergency.coinsReward} Coins
-              </Button>
+              <div className="flex-1">
+                <div className="flex items-center gap-2 mb-2">
+                  <h3 className="text-xl font-bold text-white">{emergency.title}</h3>
+                  <span className="px-2 py-0.5 text-xs font-semibold bg-[#FF6B35]/20 text-[#FF6B35] rounded-full border border-[#FF6B35]/30">
+                    URGENT
+                  </span>
+                </div>
+                <p className="text-sm text-[#D1D5DB] mb-5 leading-relaxed">{emergency.desc}</p>
+                <div className="mb-5">
+                  <div className="flex justify-between items-center mb-2">
+                    <p className="text-xs text-[#9CA3AF] font-medium">Community Progress</p>
+                    <p className="text-sm font-semibold text-[#FF6B35]">{emergency.progress}%</p>
+                  </div>
+                  <div className="w-full bg-[#1A1A1A] rounded-full h-2.5 overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={{ width: `${emergency.progress}%` }}
+                      transition={{ duration: 1.2, delay: 0.6, ease: "easeOut" }}
+                      className="h-full bg-gradient-to-r from-[#FF6B35] to-[#FF8C5A] rounded-full shadow-lg shadow-[#FF6B35]/30"
+                    />
+                  </div>
+                </div>
+                <Button
+                  variant="cta"
+                  size="lg"
+                  className="w-full"
+                  onClick={() => console.log('Help Now clicked')}
+                >
+                  Help Now +{emergency.coinsReward} Coins
+                </Button>
+              </div>
             </div>
           </div>
         </Card>

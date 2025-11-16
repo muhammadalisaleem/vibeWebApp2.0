@@ -56,19 +56,22 @@ export default function FeedPage() {
     setCurrentTime(new Date());
   }, []);
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 pb-6">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
+        className="space-y-4"
       >
-        <h1 className="text-3xl font-bold mb-6">Community Feed</h1>
-        <Button variant="primary" className="w-full sm:w-auto mb-6">
-          <Plus className="w-4 h-4 mr-2 inline" />
+        <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-white via-white to-[#9CA3AF] bg-clip-text text-transparent">
+          Community Feed
+        </h1>
+        <Button variant="primary" size="lg" className="w-full sm:w-auto">
+          <Plus className="w-5 h-5 mr-2 inline" />
           Share Your Story
         </Button>
       </motion.div>
 
-      <div className="space-y-4">
+      <div className="space-y-5">
         {mockStories.map((story, index) => (
           <motion.div
             key={story.id}
@@ -76,21 +79,21 @@ export default function FeedPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
           >
-            <Card>
-              <div className="flex gap-3 mb-3">
-                <div className="w-10 h-10 rounded-full bg-[#7C3AED] flex items-center justify-center text-xl flex-shrink-0">
+            <Card className="hover:border-[#2A2A2A]">
+              <div className="flex gap-4 mb-4">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#7C3AED] to-[#8B5CF6] flex items-center justify-center text-2xl flex-shrink-0 shadow-lg shadow-[#7C3AED]/20">
                   {story.avatar}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="font-semibold">{story.userName}</p>
+                  <p className="font-semibold text-white mb-1">{story.userName}</p>
                   <p className="text-xs text-[#9CA3AF]">
                     {formatTimeAgo(story.timestamp, currentTime)}
                   </p>
                 </div>
               </div>
-              <p className="text-sm mb-3 whitespace-pre-wrap">{story.text}</p>
+              <p className="text-base text-[#D1D5DB] mb-4 leading-relaxed whitespace-pre-wrap">{story.text}</p>
               {story.images.length > 0 && (
-                <div className="mb-3 rounded-lg overflow-hidden">
+                <div className="mb-4 rounded-xl overflow-hidden border border-[#1F1F1F]">
                   <img
                     src={story.images[0]}
                     alt="Story"
@@ -98,14 +101,14 @@ export default function FeedPage() {
                   />
                 </div>
               )}
-              <div className="flex items-center gap-4 pt-3 border-t border-[#1F1F1F]">
-                <button className="flex items-center gap-2 text-[#9CA3AF] hover:text-[#FF6B35] transition-colors">
-                  <Heart className="w-5 h-5" />
-                  <span className="text-sm">{story.likes}</span>
+              <div className="flex items-center gap-6 pt-4 border-t border-[#1F1F1F]">
+                <button className="flex items-center gap-2 text-[#9CA3AF] hover:text-[#FF6B35] transition-all duration-200 group">
+                  <Heart className="w-5 h-5 group-hover:fill-[#FF6B35] group-hover:scale-110 transition-all" />
+                  <span className="text-sm font-medium">{story.likes}</span>
                 </button>
-                <button className="flex items-center gap-2 text-[#9CA3AF] hover:text-[#7C3AED] transition-colors">
-                  <MessageCircle className="w-5 h-5" />
-                  <span className="text-sm">Comment</span>
+                <button className="flex items-center gap-2 text-[#9CA3AF] hover:text-[#7C3AED] transition-all duration-200 group">
+                  <MessageCircle className="w-5 h-5 group-hover:scale-110 transition-all" />
+                  <span className="text-sm font-medium">Comment</span>
                 </button>
               </div>
             </Card>
@@ -114,7 +117,10 @@ export default function FeedPage() {
       </div>
 
       <div className="text-center py-8">
-        <p className="text-[#9CA3AF] text-sm">Loading more stories...</p>
+        <div className="inline-flex items-center gap-2 text-[#9CA3AF] text-sm">
+          <div className="w-2 h-2 bg-[#7C3AED] rounded-full animate-pulse"></div>
+          <span>Loading more stories...</span>
+        </div>
       </div>
     </div>
   );

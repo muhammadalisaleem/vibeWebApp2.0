@@ -17,8 +17,8 @@ export function BottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-black border-t border-[#1F1F1F] md:hidden z-50">
-      <div className="flex items-center justify-around px-2 py-2">
+    <nav className="fixed bottom-0 left-0 right-0 bg-black/80 backdrop-blur-xl border-t border-[#1F1F1F]/50 shadow-2xl shadow-black/50 md:hidden z-50">
+      <div className="flex items-center justify-around px-2 py-2.5">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = pathname === tab.href;
@@ -26,14 +26,17 @@ export function BottomNav() {
             <Link
               key={tab.name}
               href={tab.href}
-              className={`flex flex-col items-center gap-1 p-2 rounded-lg transition-colors ${
+              className={`flex flex-col items-center gap-1 p-2.5 rounded-xl transition-all duration-200 relative ${
                 isActive
-                  ? 'text-[#7C3AED] bg-[#111111]'
-                  : 'text-[#9CA3AF] hover:text-white hover:bg-[#111111]'
+                  ? 'text-[#7C3AED] bg-gradient-to-b from-[#7C3AED]/10 to-transparent'
+                  : 'text-[#9CA3AF] hover:text-white hover:bg-[#1A1A1A]'
               }`}
             >
-              <Icon className="w-5 h-5" />
-              <span className="text-xs font-medium">{tab.name}</span>
+              {isActive && (
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-1 bg-gradient-to-r from-[#7C3AED] to-[#FF6B35] rounded-b-full"></div>
+              )}
+              <Icon className={`w-5 h-5 ${isActive ? 'scale-110' : ''} transition-transform`} />
+              <span className={`text-xs font-medium ${isActive ? 'font-semibold' : ''}`}>{tab.name}</span>
             </Link>
           );
         })}

@@ -19,61 +19,7 @@
 - **Data Fetching**: React Query (@tanstack/react-query)
 - **Animations**: Framer Motion
 - **Icons**: Lucide React
-- **Deployment**: Vercel-ready
 
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18+ and npm
-- Firebase project with Authentication, Firestore, and Storage enabled
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   cd vibe-web
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Set up environment variables**
-   
-   Copy `.env.example` to `.env.local`:
-   ```bash
-   cp .env.example .env.local
-   ```
-   
-   Fill in your Firebase credentials in `.env.local`:
-   ```env
-   NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key_here
-   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project_id.firebaseapp.com
-   NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
-   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project_id.appspot.com
-   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-   NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
-   ```
-
-4. **Seed mock data (optional)**
-   
-   For development, you can seed Firestore with mock data:
-   ```bash
-   # First install ts-node if needed
-   npm install -D ts-node
-   
-   # Run the seed script
-   npx ts-node scripts/seedFirestore.ts
-   ```
-
-5. **Run the development server**
-   ```bash
-   npm run dev
-   ```
-
-   Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Project Structure
 
@@ -142,14 +88,6 @@ vibe-web/
 - **Firebase Integration**: Ready for production - replace mock data with Firestore queries
 - **Scalability**: Designed to migrate from Firestore to PostgreSQL when needed
 
-## Deployment
-
-This project is ready to deploy on Vercel:
-
-1. Push to GitHub
-2. Import project in Vercel
-3. Add environment variables in Vercel dashboard
-4. Deploy!
 
 ## License
 

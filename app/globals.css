@@ -1,19 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
-  --primary: #7C3AED;
-  --primary-dark: #6D28D9;
-  --primary-light: #8B5CF6;
-  --cta: #FF6B35;
-  --cta-hover: #E55A2B;
-  --text-muted: #9CA3AF;
-  --text-light: #D1D5DB;
-  --card-bg: #0F0F0F;
-  --card-hover: #1A1A1A;
-  --border: #1F1F1F;
-  --border-light: #2A2A2A;
+  --background: #05060b;
+  --foreground: #f9fafb;
+  --primary: #8b5cf6;
+  --primary-dark: #6d28d9;
+  --primary-light: #c084fc;
+  --cta: #ff7b54;
+  --cta-hover: #ff915f;
+  --text-muted: #9ca3af;
+  --text-light: #e5e7eb;
+  --card-bg: rgba(15, 18, 32, 0.85);
+  --card-hover: rgba(32, 36, 54, 0.9);
+  --border: rgba(124, 58, 237, 0.15);
+  --border-light: rgba(255, 255, 255, 0.08);
+  --chip-bg: rgba(255, 255, 255, 0.06);
 }
 
 @theme inline {
@@ -35,15 +36,41 @@
 }
 
 body {
-  background: var(--background);
-  background-image: 
-    radial-gradient(at 0% 0%, rgba(124, 58, 237, 0.1) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(255, 107, 53, 0.1) 0px, transparent 50%);
+  position: relative;
+  background: radial-gradient(circle at 15% 20%, rgba(124, 58, 237, 0.35), transparent 45%),
+    radial-gradient(circle at 85% 10%, rgba(59, 130, 246, 0.25), transparent 40%),
+    radial-gradient(circle at 15% 80%, rgba(255, 107, 53, 0.18), transparent 40%),
+    var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1rem);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  width: 45vmax;
+  height: 45vmax;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.35;
+  z-index: -1;
+}
+
+body::before {
+  background: rgba(124, 58, 237, 0.35);
+  top: -10vmax;
+  left: -5vmax;
+}
+
+body::after {
+  background: rgba(255, 107, 53, 0.25);
+  bottom: -15vmax;
+  right: -10vmax;
 }
 
 * {
@@ -73,9 +100,9 @@ body {
 
 /* Smooth transitions */
 * {
-  transition-property: color, background-color, border-color, opacity, transform;
+  transition-property: color, background-color, border-color, opacity, transform, box-shadow;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
+  transition-duration: 180ms;
 }
 
 /* Shimmer animation for progress bars */
@@ -90,4 +117,76 @@ body {
 
 .animate-shimmer {
   animation: shimmer 2s infinite;
+}
+
+/* Utility helpers */
+.glass-panel {
+  background: var(--card-bg);
+  border: 1px solid var(--border-light);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 10px 40px rgba(5, 6, 11, 0.55);
+}
+
+.glass-chip {
+  background: var(--chip-bg);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+}
+
+.frosted-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+}
+
+.section-heading {
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.heading-xl {
+  font-size: clamp(1.8rem, 1rem + 1.8vw, 3rem);
+  line-height: 1.2;
+}
+
+.heading-lg {
+  font-size: clamp(1.35rem, 1.1rem + 0.9vw, 2.1rem);
+  line-height: 1.25;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.gradient-border {
+  position: relative;
+  border-radius: 1rem;
+  isolation: isolate;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.6), rgba(255, 107, 53, 0.4));
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
 }

@@ -6,7 +6,7 @@
  */
 
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, doc, setDoc } from 'firebase/firestore';
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
 import { mockUser, mockEvents, mockStories, mockRewards, mockEmergency } from '../lib/mockData';
 
 const firebaseConfig = {

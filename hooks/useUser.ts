@@ -1,8 +1,6 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { doc, getDoc } from 'firebase/firestore';
-import { db } from '@/lib/firebase';
 import { User } from '@/lib/types';
 
 // Mock user data - replace with actual Firestore query later
